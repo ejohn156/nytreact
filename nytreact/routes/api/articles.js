@@ -5,9 +5,10 @@ const articlesController = require("../../controllers/articlesController");
 router.route("/")
   .get(articlesController.find)
   .post(articlesController.create)
-  .delete(articlesController.remove)
+  
 
 // Matches with "/api/articles/:id"
-
+router.route("/:id")
+.delete(articlesController.delete)
 
 module.exports = router;

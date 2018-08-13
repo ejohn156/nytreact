@@ -13,8 +13,14 @@ class Saved extends Component {
         this.setState({
             savedArticles: res.data
         })
-     
         )}
+
+        componentDidUpdate = () => {
+            DB.get().then(res =>
+                this.setState({
+                    savedArticles: res.data
+                })
+            )}
     deleteArticle = (event) => {
         const {id} = event.target
         this.state.savedArticles.forEach(function(element){
@@ -22,7 +28,11 @@ class Saved extends Component {
             DB.delete(element._id)
             })
             DB.get().then(res => this.setState({savedArticles: res.data}))
+            
         }
+        handleSavedChange = (event) => {
+            this.setState({ savedArticles: event.target.value })
+          }
     
     render() {
         return (
